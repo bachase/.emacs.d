@@ -42,3 +42,6 @@
 
 ;; delete selection
 (delete-selection-mode 1)
+
+;; version control
+(require 'magit)
