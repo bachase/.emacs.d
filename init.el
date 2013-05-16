@@ -12,6 +12,7 @@
                       epc
                       deferred
                       jedi
+                      go-mode
                       )
   "A list of packages to ensure are installed at launch.")
 
@@ -42,3 +43,6 @@
 
 ;; git version control
 (require 'magit)
+
+;; go language
+(require 'go-mode-load)
