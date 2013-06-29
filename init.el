@@ -13,6 +13,7 @@
                       deferred
                       jedi
                       go-mode
+                      monky
                       )
   "A list of packages to ensure are installed at launch.")
 
