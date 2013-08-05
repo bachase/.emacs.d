@@ -14,6 +14,7 @@
                       jedi
                       go-mode
                       monky
+		      haskell-mode
                       )
   "A list of packages to ensure are installed at launch.")
 
@@ -47,3 +48,6 @@
 
 ;; go language
 (require 'go-mode-load)
+
+;; tramp config
+(setq tramp-default-method "ssh")
