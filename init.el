@@ -51,3 +51,7 @@
 
 ;; tramp config
 (setq tramp-default-method "ssh")
+
+;; save command history
+(savehist-mode 1)
+(setq savehist-file "~/.emacs.d/tmp/savehist")
