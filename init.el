@@ -53,5 +53,7 @@
 (setq tramp-default-method "ssh")
 
 ;; save command history
-(savehist-mode 1)
-(setq savehist-file "~/.emacs.d/tmp/savehist")
+(setq savehist-additional-variables    ;; also save...
+  '(search-ring regexp-search-ring)    ;; ... my search entries
+  savehist-file "~/.emacs.d/savehist") ;; keep my home clean
+(savehist-mode t)                      ;; do customization before activate
