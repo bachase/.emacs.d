@@ -22,6 +22,9 @@
   (when (not (package-installed-p p))
     (package-install p)))
 
+;; drop other packages in top-level
+(add-to-list 'load-path "~/.emacs.d")
+
 ;; set theme
 (load-theme 'zenburn t)
 
@@ -47,11 +50,16 @@
 (require 'magit)
 
 ;; go language
-(require 'go-mode-load)
+(require 'go-mode)
 
+;; julia
+(require 'julia-mode)
+ 
 ;; tramp config
 (setq tramp-default-method "ssh")
 
 ;; save command history
-(savehist-mode 1)
-(setq savehist-file "~/.emacs.d/tmp/savehist")
+(setq savehist-additional-variables    ;; also save...
+  '(search-ring regexp-search-ring)    ;; ... my search entries
+  savehist-file "~/.emacs.d/savehist") ;; keep my home clean
+(savehist-mode t)                      ;; do customization before activate
