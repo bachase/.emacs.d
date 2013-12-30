@@ -36,7 +36,7 @@
 (add-hook 'python-mode 'jedi:setup)
 
 ;; manual python-mode until melpa/elpa fixed
-(setq py-install-directory "~/.emacs.d/python-mode.el-6.1.1/")
+(setq py-install-directory "~/.emacs.d/python-mode.el-6.1.3/")
 (add-to-list 'load-path py-install-directory)
 (require 'python-mode)
 
