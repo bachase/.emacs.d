@@ -1,65 +1,56 @@
 (require 'package)
-(add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
-(add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/"))
+(add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/") t)
+(add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/") t)
 (package-initialize)
 
-(when (not package-archive-contents)
-  (package-refresh-contents))
+(tool-bar-mode 0)
+(defalias 'yes-or-no-p 'y-or-n-p)
 
-(defvar my-packages '(zenburn-theme
-                      auto-complete
-		      magit
-                      epc
-                      deferred
-                      jedi
-                      go-mode
-                      monky
-		      haskell-mode
-                      )
-  "A list of packages to ensure are installed at launch.")
+(defconst my-packages
+  '(company
+    zenburn-theme
+    ggtags
+    helm
+    helm-gtags
+    helm-ag
+    helm-descbinds
+    clean-aindent-mode
+    dtrt-indent
+    ws-butler
+    smartparens 
+    elpy
+    pyvenv
+    volatile-highlights 
+    exec-path-from-shell))
 
-(dolist (p my-packages)
-  (when (not (package-installed-p p))
-    (package-install p)))
+(defun install-packages ()
+  "Install all required packages."
+  (interactive)
+  (unless package-archive-contents
+    (package-refresh-contents))
+  (dolist (package my-packages)
+    (unless (package-installed-p package)
+      (package-install package))))
 
-;; drop other packages in top-level
-(add-to-list 'load-path "~/.emacs.d")
+(install-packages)
 
-;; set theme
+;; add your modules path
+(add-to-list 'load-path "~/.emacs.d/custom/")
+
+(require 'setup-editing)
+(require 'setup-convenience)
+(require 'setup-helm)
+(require 'setup-environment)
+
+
+;; load theme; extra t says not to prompt for safety
 (load-theme 'zenburn t)
 
-;; auto-complete setup
-(require 'auto-complete-config)
-(setq ac-dictionary-files (list (concat user-emacs-directory ".dict")))
-(ac-config-default)
-
-(add-hook 'python-mode 'jedi:setup)
-
-;; manual python-mode until melpa/elpa fixed
-(setq py-install-directory "~/.emacs.d/python-mode.el-6.1.3/")
-(add-to-list 'load-path py-install-directory)
-(require 'python-mode)
 
 ;; disable tool bar since it takes up a lot of room
 (tool-bar-mode -1)
 
-;; delete selection 
-(delete-selection-mode 1)
-
-;; git version control
-(require 'magit)
-
-;; go language
-(require 'go-mode)
-
-;; julia
-(require 'julia-mode)
- 
 ;; tramp config
 (setq tramp-default-method "ssh")
 
-;; save command history
-(setq savehist-additional-variables    ;; also save...
-  '(search-ring regexp-search-ring)    ;; ... my search entries
-  savehist-file "~/.emacs.d/savehist") ;; keep my home clean
-(savehist-mode t)                      ;; do customization before activate
+(set-default-font "Courier 24")
