@@ -53,4 +53,18 @@
 ;; tramp config
 (setq tramp-default-method "ssh")
 
-(set-default-font "Courier 24")
+(set-default-font "Inconsolata 12")
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages
+   (quote
+    (exec-path-from-shell volatile-highlights elpy smartparens ws-butler dtrt-indent clean-aindent-mode helm-descbinds helm-ag helm-gtags helm ggtags zenburn-theme company))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
