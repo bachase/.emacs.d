@@ -7,6 +7,8 @@
   (add-to-list 'exec-path "C:/lib") ;; fakecygpty/qkill here
   (setenv "PATH" (concat "C:/msys64/usr/bin:" (getenv "PATH"))) ;; ensure msys bash at front
   (setenv "PATH" (concat "C:/Program Files/Git/bin:" (getenv "PATH"))) ;; but we get our git
+  (setenv "LC_CTYPE" "en_US.UTF-8") ;; supress local warning from perl
+  (setenv "LC_ALL" "en_US.UTF-8")
   (require 'fakecygpty)
   (fakecygpty-activate)
   (setq explicit-shell-file-name
